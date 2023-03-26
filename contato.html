@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<title>CASTELO REC - CONTATO</title>
+	<link rel="icon" type="image/x-icon" href="imagens/rec-icon.webp">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<meta name="description" content="stylesheet" type="text.css">
+	<meta name="keywords" content="palavras, separadas, por, virgula">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0" />
+
+</head>
+<body>
+
+<header>
+	<div class="container">
+	<div class="logo"></div><!--logo-->
+
+	<!--menu pc -->
+	<nav class="menu-pc">
+		<ul>
+			<li><a href="index"> Home </a></li>
+			<li> <a href="catalogo">Catálogo</a> </li>
+			<li><a href="contato"> Contato </a></li>
+		</ul>
+	</nav>
+
+	<!--menu mobile -->
+	<nav class="menu-mobile">
+		<ul>
+			<li><a href="index">Home</a></li>			
+			<li><a href="catalogo">Catálogo</a></li>
+			<li><a href="contato">Contato</a></li>
+
+		</ul>
+	</nav>
+	</div><!--container-->
+
+<section id="contato" class="sessao4">
+	<div class="container">
+		<div class="form">
+			<h2>Entre em contato</h2>
+			<p>Venha produzir musica conosco! Nós da Castelo REC ficaremos muito felizes em poder esclarecer todas as suas dúvidas sobre nosso trabalho e te ajudar em sua carreira musical.</p>
+
+			<form action="form.php" method="post">
+				<input required type="hidden" name="Formulário de Contato">
+				<input required type="text" name="nome" placeholder="Nome*">
+				<input required type="text" name="email" placeholder="E-mail*">
+				<input required type="text" name="telefone" placeholder="Telefone/WhastApp*">
+				<textarea name="mensagem" placeholder="Mensagem*"></textarea>
+				<div class="clear"></div>
+                <input type="submit" value="Enviar"> 
+			</form>
+
+		</div><!--form-->
+
+	<div class="map-wraper">
+	<h2>Visite nosso Estúdio</h2>
+		<div class="map-wraper3">
+		<div class="map-wraper2">
+		<div class="map" id="mapa"></div>
+		</div><!--map-wraper2-->
+		</div><!--map-wraper-3-->
+	</div><!--map-wraper-->
+
+		<div class="clear"></div>
+	</div><!--container-->
+</section><!--sessao4-->
+</header>
+
+<section class="sessao5">
+<h2 style="text-align:center; background: blueviolet; color: white;">SIGA NOSSAS REDES SOCIAIS</h2>
+<div style="background: blueviolet; text-align:center;">
+		<a href="https://m.soundcloud.com/castelo-rec"><img src="imagens/soundcloud.webp"/ style="width: 64px;  height: 64px; margin-left:0.5%"></a>
+		<a href="https://www.instagram.com/castelo_rec/"><img src="imagens/instagram.webp" style="margin-left: 1%;" /></a>
+		<a href="https://www.youtube.com/channel/UCW8ExhN0ZN0xK1O0PMgPqTw"><img src="imagens/youtube.webp" style="margin-left: 1%; width: 64px; height:64px;" /> </a>
+</div>
+</section>
+
+
+<footer>
+	<div class="container">
+		<p>Todos os direitos reservados</p>
+		<p>davidpereira19@gmail.com</p>
+		<div class="clear"></div>
+	</div><!--container-->
+</footer>
+<script src='https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAmUHMh_f54CaW9cNbHNTMBIQQGb3P_ots'></script>
+<script src="js/jquery.js"></script>
+<script src="js/jquery.ajaxform.js"></script>
+<script>
+	$(function(){
+
+		$('form').submit(function(){
+
+			if(formularioPreenchido()){
+					var form = $('form');
+					$('form').ajaxSubmit({
+						beforeSubmit:function(){
+							form.find('input[type=submit]').attr('disabled','true');
+							form.find('input[type=submit]').animate({'opacity':'0.4'})
+							form.find('input[type=submit]').attr('value','Carregando');
+
+						},
+						success:function(data){
+							//Aqui você pode inserir uma div, por exemplo.
+							//Qualquer mensagem de sucesso, após o formulario ter sido enviado.
+							alert('Formulário foi enviado com sucesso!');
+							form.find('input[type=submit]').removeAttr('disabled');
+							form.find('input[type=submit]').animate({'opacity':'1'})
+							form.find('input[type=submit]').attr('value','Enviar');
+							form[0].reset();
+						}
+					});
+			}else{
+				alert("Campos Vázios não são permitidos!");
+			}
+
+
+
+			return false;
+		})
+
+		function formularioPreenchido(){
+			var nome = $('[name=nome]').val();
+			var email = $('[name=email]').val();
+			var telefone = $('[name=telefone]').val();
+			var mensagem = $('[name=mensagem]').val();
+			if(nome === '' || email === '' || telefone === '' || mensagem === ''){
+				return false;
+			}else{
+				return true;
+			}
+		}
+
+
+	})
+</script>
+<script src="js/functions.js"></script>
+<script src="js/menu_responsivo.js"> </script>
+</body>
+</html>
